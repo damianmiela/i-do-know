@@ -1,0 +1,793 @@
+/* The host panel (/host), after the approved mockup docs/mockups/host.html.
+   Laptop: two columns. Phone (narrow): one column, sections in tabs, big button under the thumb.
+   Colours, fonts and radii only through the variables in theme.css. */
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ivory);
+  font-family: var(--f-body);
+  line-height: 1.4;
+}
+h2,
+h3,
+p {
+  margin: 0;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: default;
+}
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+a {
+  color: var(--gold);
+}
+
+.host {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--s4) var(--s5) 120px;
+  display: grid;
+  /* rows keep their own height: a short tab must not stretch the tabs and the header */
+  align-content: start;
+  gap: var(--s4);
+  min-height: 100vh;
+  background: radial-gradient(90% 40% at 50% -10%, var(--glow-1) 0%, transparent 60%), var(--night);
+}
+.h-muted {
+  color: var(--ivory-soft);
+  font-size: 15px;
+}
+
+/* ---------- top bar ---------- */
+.h-top {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  flex-wrap: wrap;
+}
+.h-logo {
+  height: 28px;
+  width: auto;
+}
+.h-title {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 22px;
+  margin-right: var(--s2);
+}
+.h-logout {
+  margin-left: auto;
+}
+.h-live {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--good);
+  box-shadow: 0 0 0 5px var(--good-bg);
+  flex: none;
+}
+.h-live.off,
+.h-live.paused {
+  background: var(--warn);
+  box-shadow: 0 0 0 5px var(--warn-bg);
+}
+.h-warning {
+  padding: var(--s3) var(--s4);
+  border-radius: var(--r-sm);
+  background: var(--warn-bg);
+  border: 1px solid var(--warn);
+  color: var(--warn-text);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* ---------- layout ---------- */
+.h-tabs {
+  display: none;
+}
+.h-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: var(--s5);
+  align-items: start;
+}
+.h-col {
+  display: grid;
+  gap: var(--s5);
+}
+.h-panel {
+  background: var(--night-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--s5);
+  display: grid;
+  gap: var(--s4);
+  min-width: 0;
+}
+.h-panel h2 {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+@media (max-width: 860px) {
+  .host {
+    padding: var(--s3) var(--s3) 120px;
+  }
+  .h-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .h-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--s1);
+    padding: var(--s1);
+    background: var(--night-2);
+    border-radius: var(--r-md);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+  .h-tabs button {
+    min-height: 44px;
+    padding: 0 2px;
+    border: 0;
+    border-radius: var(--r-sm);
+    background: transparent;
+    color: var(--ivory-soft);
+    font-weight: 800;
+    font-size: 14px;
+  }
+  .h-tabs button.on {
+    background: var(--ivory);
+    color: var(--ink);
+  }
+  .narrow-hidden {
+    display: none;
+  }
+}
+
+/* ---------- game ---------- */
+.h-state {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 24px;
+}
+.h-badge {
+  font-family: var(--f-body);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--warn);
+  color: var(--warn-text);
+}
+.h-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s2);
+}
+.h-kpi {
+  display: grid;
+  gap: 2px;
+  padding: var(--s3);
+  border-radius: var(--r-sm);
+  background: var(--night-3);
+}
+.h-kpi b {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 28px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.h-kpi span {
+  color: var(--ivory-soft);
+  font-size: 13px;
+}
+.h-kpi.warn b {
+  color: var(--warn);
+}
+.h-kpi.dim {
+  opacity: 0.45;
+}
+.h-next {
+  width: 100%;
+  min-height: 92px;
+  border: 0;
+  border-radius: var(--r-md);
+  background: var(--gold);
+  color: var(--ink);
+  display: grid;
+  place-content: center;
+  gap: 2px;
+  padding: var(--s3);
+  box-shadow: inset 0 -5px 0 var(--gold-deep);
+}
+.h-next b {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.1;
+}
+.h-next span {
+  font-size: 15px;
+  font-weight: 700;
+  opacity: 0.75;
+}
+.h-next.busy {
+  opacity: 0.7;
+  cursor: progress;
+}
+.h-next:disabled {
+  background: var(--night-3);
+  color: var(--ivory-faint);
+  box-shadow: none;
+}
+.h-ctrls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s2);
+}
+.h-ctrls:empty {
+  display: none;
+}
+
+/* ---------- buttons and inputs ---------- */
+.h-btn {
+  min-height: 48px;
+  padding: 0 var(--s3);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  font-weight: 700;
+  font-size: 15px;
+}
+.h-btn:hover:not(:disabled) {
+  background: var(--night-3);
+}
+.h-btn:disabled {
+  opacity: 0.4;
+}
+.h-btn.small {
+  min-height: 36px;
+  font-size: 14px;
+}
+.h-btn.big {
+  min-height: 56px;
+  font-size: 17px;
+}
+.h-btn.caution {
+  border-color: var(--warn);
+  color: var(--warn-text);
+}
+.h-btn.danger {
+  border-color: var(--bad);
+  color: var(--bad-text);
+}
+.h-btn.quiet {
+  border-color: transparent;
+  color: var(--ivory-soft);
+}
+.h-input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 var(--s3);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line-strong);
+  background: var(--night);
+  font-size: 16px; /* 16 px: phones don't zoom in on focus */
+}
+
+/* ---------- questions ---------- */
+.h-qlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+  max-height: 420px;
+  overflow: auto;
+}
+.h-qlist li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: var(--s2);
+  padding: var(--s2) var(--s3);
+  border-radius: var(--r-sm);
+}
+.h-qlist .n {
+  color: var(--gold);
+  font-weight: 800;
+}
+.h-qlist .t {
+  display: grid;
+  gap: 2px;
+}
+.h-qlist small {
+  color: var(--ivory-soft);
+  font-size: 13px;
+}
+.h-qlist .done {
+  color: var(--ivory-faint);
+}
+.h-qlist .now {
+  background: var(--night-3);
+  outline: 2px solid var(--gold);
+  font-weight: 700;
+}
+
+/* ---------- top 10 / podium ---------- */
+.h-top10 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+.h-top10 li {
+  display: grid;
+  grid-template-columns: 28px 26px minmax(0, 1fr) auto auto;
+  gap: var(--s2);
+  align-items: center;
+  padding: var(--s1) var(--s3);
+  border-radius: var(--r-sm);
+  font-weight: 700;
+}
+.h-top10 .n {
+  color: var(--gold);
+}
+.h-top10 .pts {
+  font-variant-numeric: tabular-nums;
+}
+.h-top10 .who {
+  overflow-wrap: anywhere;
+}
+.h-top10 small {
+  color: var(--good-text);
+  font-size: 12px;
+}
+.h-top10 .out {
+  background: var(--night-3);
+}
+
+/* ---------- guests ---------- */
+.h-glist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s1);
+  max-height: 460px;
+  overflow: auto;
+}
+.h-glist li {
+  display: grid;
+  grid-template-columns: 10px 26px minmax(0, 1fr) auto;
+  gap: var(--s3);
+  align-items: center;
+  min-height: 52px;
+  padding: var(--s1) var(--s3);
+  border-radius: var(--r-sm);
+  background: var(--night-3);
+  font-weight: 700;
+}
+.h-glist li.h-muted {
+  display: block;
+  background: none;
+}
+.h-glist .who {
+  display: grid;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.h-glist small {
+  color: var(--ivory-soft);
+  font-weight: 600;
+  font-size: 13px;
+}
+.h-glist .acts {
+  display: flex;
+  gap: var(--s1);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ivory-faint);
+}
+.dot.on {
+  background: var(--good);
+}
+.dot.off {
+  background: var(--warn);
+}
+.h-demo {
+  display: grid;
+  gap: var(--s2);
+  margin: var(--s3) 0;
+}
+.h-add summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--gold);
+  min-height: 36px;
+}
+.h-form {
+  display: grid;
+  gap: var(--s2);
+  margin-top: var(--s2);
+}
+
+/* ---------- big screen and joining ---------- */
+.h-seg {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--s1);
+  padding: var(--s1);
+  background: var(--night-3);
+  border-radius: var(--r-sm);
+}
+.h-seg button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--ivory-soft);
+  font-weight: 800;
+  font-size: 14px;
+}
+.h-seg button.on {
+  background: var(--gold);
+  color: var(--ink);
+}
+.h-join {
+  display: flex;
+  gap: var(--s4);
+  align-items: center;
+}
+.h-qr {
+  flex: none;
+  padding: 4px;
+  border-radius: var(--r-sm);
+  background: var(--ivory);
+  line-height: 0;
+}
+.qr-bg {
+  fill: var(--ivory);
+}
+.qr-ink {
+  fill: var(--ink);
+}
+.h-url {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--gold);
+  overflow-wrap: anywhere;
+}
+/* the joining switch: amber while closed, green while open */
+.h-joining {
+  display: grid;
+  gap: var(--s3);
+  padding: var(--s3) var(--s4);
+  border-radius: var(--r-sm);
+  background: var(--warn-bg);
+  border: 1px solid var(--warn);
+}
+.h-joining b {
+  color: var(--warn-text);
+  font-size: 18px;
+}
+.h-joining.open {
+  background: var(--good-bg);
+  border-color: var(--good);
+}
+.h-joining.open b {
+  color: var(--good-text);
+}
+.h-setup summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--ivory-faint);
+  min-height: 36px;
+}
+.h-setup ul {
+  margin: 0;
+  padding-left: var(--s4);
+  display: grid;
+  gap: var(--s1);
+  color: var(--ivory-soft);
+  font-size: 14px;
+}
+
+/* ---------- past games (Phase 6.8) ---------- */
+.h-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s3);
+  align-items: center;
+  padding: var(--s3) var(--s4);
+  border-radius: var(--r-sm);
+  background: var(--warn-bg);
+  border: 1px solid var(--warn);
+  color: var(--warn-text);
+  font-weight: 700;
+  font-size: 15px;
+}
+.g-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s2);
+}
+.g-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s3);
+  border-radius: var(--r-sm);
+  background: var(--night-3);
+}
+.g-list .who {
+  display: grid;
+  font-weight: 700;
+}
+.g-list small {
+  color: var(--ivory-faint);
+  font-weight: 600;
+}
+.g-list .acts,
+.g-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+a.h-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.g-h {
+  margin: var(--s3) 0 0;
+  font-size: 15px;
+  color: var(--gold);
+}
+.g-q {
+  padding: var(--s3);
+  border-radius: var(--r-sm);
+  background: var(--night-3);
+}
+.g-q summary {
+  cursor: pointer;
+  display: grid;
+  gap: 2px;
+}
+.g-q summary small {
+  color: var(--ivory-faint);
+  font-weight: 600;
+}
+.g-q[open] {
+  display: grid;
+  gap: var(--s3);
+}
+.g-votes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s1);
+}
+.g-votes li {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) 2.5em;
+  gap: var(--s2);
+  align-items: center;
+  font-size: 14px;
+}
+.g-votes i {
+  display: block;
+  height: 10px;
+  min-width: 2px;
+  border-radius: 999px;
+  background: var(--ivory-faint);
+}
+.g-votes li.right i {
+  background: var(--gold);
+}
+.g-votes li.right span {
+  color: var(--gold);
+  font-weight: 800;
+}
+.g-votes b {
+  text-align: right;
+}
+.g-answers {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.g-answers th {
+  text-align: left;
+  white-space: nowrap;
+  color: var(--ivory-faint);
+  font-weight: 700;
+}
+.g-answers td,
+.g-answers th {
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--line);
+}
+.g-answers td {
+  overflow-wrap: anywhere;
+}
+.g-answers tr.right td:nth-child(2) {
+  color: var(--good-text);
+}
+
+/* ---------- rounds (Phase 6.10) ---------- */
+.h-rounds {
+  display: grid;
+  gap: var(--s2);
+}
+.h-round-pick {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--s3);
+  align-items: center;
+  font-weight: 700;
+}
+
+/* ---------- switches (auto-reveal) ---------- */
+.h-switch {
+  display: flex;
+  gap: var(--s3);
+  align-items: flex-start;
+  cursor: pointer;
+}
+.h-switch input {
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  accent-color: var(--gold);
+  flex: none;
+}
+.h-switch span {
+  display: grid;
+  gap: 2px;
+}
+.h-switch small {
+  color: var(--ivory-faint);
+  font-weight: 600;
+}
+
+/* ---------- timer (waiting room) ---------- */
+.h-timer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--s2);
+  align-items: center;
+}
+.h-timer label,
+.h-timer > small {
+  grid-column: 1 / -1;
+}
+.h-timer label {
+  font-weight: 700;
+}
+.h-timer label small,
+.h-timer > small {
+  color: var(--ivory-faint);
+  font-weight: 600;
+}
+.h-timer > small.bad {
+  color: var(--warn-text);
+}
+
+/* ---------- notice and confirmation sheet ---------- */
+.h-notice {
+  position: fixed;
+  left: 50%;
+  bottom: var(--s5);
+  transform: translateX(-50%);
+  max-width: calc(100% - 32px);
+  padding: var(--s3) var(--s5);
+  border-radius: var(--r-md);
+  background: var(--good-bg);
+  border: 1px solid var(--good);
+  color: var(--good-text);
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+  z-index: 5;
+}
+.h-notice.bad {
+  background: var(--bad-bg);
+  border-color: var(--bad);
+  color: var(--bad-text);
+}
+.h-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: var(--shade-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s3);
+}
+.h-card {
+  width: 100%;
+  max-width: 460px;
+  display: grid;
+  gap: var(--s3);
+  padding: var(--s5);
+  border-radius: var(--r-lg);
+  background: var(--night-2);
+  border: 1px solid var(--line-strong);
+}
+.h-card h3 {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.2;
+}
+.h-card p {
+  color: var(--ivory-soft);
+}
+@media (max-width: 860px) {
+  /* on the phone the question slides up from the bottom, under the thumb */
+  .h-sheet {
+    align-items: flex-end;
+  }
+  .h-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* notices sit above the fixed big button, never over it */
+  .h-notice {
+    bottom: calc(92px + var(--s3) * 2);
+  }
+  /* the big button stays under the thumb while scrolling (only on the Game tab) */
+  .h-next {
+    position: fixed;
+    left: var(--s3);
+    right: var(--s3);
+    bottom: var(--s3);
+    width: auto;
+    z-index: 3;
+    box-shadow:
+      inset 0 -5px 0 var(--gold-deep),
+      0 8px 24px var(--shade-strong);
+  }
+}

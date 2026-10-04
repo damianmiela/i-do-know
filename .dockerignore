@@ -1,0 +1,21 @@
+# Never into the image: secrets, private docs, real content, game data
+event
+.env
+.env.*
+_docs
+CLAUDE.md
+data
+content/*
+!content/*.example.json
+!content/photos
+content/photos/*
+!content/photos/example-baby.webp
+
+# Not needed to build
+.git
+**/node_modules
+**/dist
+docs
+tests
+test-results
+playwright-report

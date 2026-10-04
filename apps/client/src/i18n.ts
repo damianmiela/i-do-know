@@ -1,0 +1,493 @@
+// UI texts in all five languages. English is the reference: every other language must have
+// every key (a missing one is a compile error). PL/ES/CA/DE are DRAFTS, to be reviewed in Phase 9.
+import { LANGS, type Lang } from '@idoknow/shared';
+
+/** A text that depends on a number: forms by Intl.PluralRules category. */
+export interface Plural {
+  one: string;
+  few?: string;
+  many?: string;
+  other: string;
+}
+export type Text = string | Plural;
+
+const en = {
+  searchTitle: 'Find your name',
+  searchPlaceholder: 'Start typing your name',
+  searchHint: 'Type at least 2 letters of your first name.',
+  searchTaken: 'Already taken',
+  searchNone: 'No name found. Try another spelling.',
+  searchNotOnList: 'Not on the list? Ask the quiz host.',
+  nameTaken: "Someone just picked this name. If it's you, ask the quiz host.",
+  langTitle: 'Hi {name}! Pick your language',
+  continue: 'Continue',
+  inTitle: "You're in!",
+  playersJoined: 'Players joined',
+  questionOf: 'Question {n} of {total}',
+  seconds: '{n} s',
+  paused: 'Paused',
+  answered: '{n} of {total} guests have answered',
+  timeUp: "Time's up!",
+  correct: 'Correct!',
+  answeredIn: 'answered in {s} s',
+  wrong: 'Not this time',
+  noAnswer: 'No answer this time',
+  answerWas: 'The answer was',
+  waitNext: 'You joined during this question. The next one is yours!',
+  yourPlace: 'Your place',
+  ofN: 'of {n}',
+  places: { one: '{n} place', other: '{n} places' },
+  pointsTotal: '{n} points in total',
+  lookUp: 'Look at the big screen!',
+  finished: 'Quiz finished',
+  ofPlayers: { one: 'of {n} player', other: 'of {n} players' },
+  totals: '{points} points · {correct} of {total} correct',
+  podium: 'Look up at the big screen for the podium!',
+  reconnecting: 'Reconnecting… your points are safe',
+  scanAgainTitle: 'Please open the quiz again',
+  rateLimited: 'Too many tries. Please wait a moment.',
+  error: 'Something went wrong. Please try again.',
+  language: 'Language',
+  confirmTitle: 'Is this you?',
+  confirmYes: "Yes, that's me",
+  confirmNo: 'No, go back',
+  changeName: 'Not you? Change name',
+  changeNameTitle: 'Give back this name?',
+  changeNameYes: 'Yes, pick another name',
+  askHost: 'Please ask the quiz host to change your name.',
+  searching: 'Searching…',
+  youChose: 'You chose',
+  sending: 'Not sent yet… still trying',
+  notSent: "Your tap didn't arrive. Please tap again.",
+  tapOnce: 'Tap once: your first tap counts.',
+  practice: 'Practice round: just for fun',
+  practiceDone: 'Practice done! The real quiz starts soon.',
+  connecting: 'Connecting…',
+  reload: "Something didn't load. Tap to try again.",
+  inLead:
+    'Keep this page open. If it closes, just scan the QR code again. The quiz starts later tonight.',
+  nextRoundLead: 'Keep this page open. The next round starts soon.',
+  getReady: 'Read the question… the answers are coming',
+  coupleYou: "You're playing for fun: your answers are shown at the end",
+  coupleTitle: 'How well do they know each other?',
+  sameAnswer: 'Same answer!',
+  coupleNoAnswer: 'no answer',
+  rightOf: '{n} of {total} right',
+  placeFun: 'Place {n} in the ranking (just for fun)',
+  agreed: 'They agreed on {n} of {total}',
+  locked: 'Your answer is saved',
+  scanAgainLead: 'Tap the button, or scan the QR code on the big screen.',
+  pickLanguage: 'Pick your language',
+  tooEarlyTitle: "You're a bit early!",
+  tooEarlyLead: 'Joining opens shortly before the quiz. Keep this page open: it goes on by itself.',
+  rejoin: 'Open the quiz',
+  closedTitle: 'Joining is closed right now',
+  closedLead: 'Ask the quiz host to open it. Keep this page open: it goes on by itself.',
+  fullRanking: 'Final ranking',
+  you: 'You',
+  nOfTotal: '{n} of {total}',
+  overallRanking: 'Overall ranking',
+  roundsN: { one: '{n} round', other: '{n} rounds' },
+} satisfies Record<string, Text>;
+
+export type Key = keyof typeof en;
+type Messages = { [K in Key]: (typeof en)[K] extends Plural ? Plural : string };
+
+const pl: Messages = {
+  searchTitle: 'Znajdź swoje imię',
+  searchPlaceholder: 'Zacznij wpisywać imię',
+  searchHint: 'Wpisz co najmniej 2 litery imienia.',
+  searchTaken: 'Już zajęte',
+  searchNone: 'Nic nie znaleziono. Spróbuj innej pisowni.',
+  searchNotOnList: 'Nie ma Cię na liście? Zapytaj prowadzącego quiz.',
+  nameTaken: 'Ktoś właśnie wybrał to imię. Jeśli to Ty, zapytaj prowadzącego.',
+  langTitle: 'Cześć, {name}! Wybierz język',
+  continue: 'Dalej',
+  inTitle: 'Jesteś w grze!',
+  playersJoined: 'Dołączyło graczy',
+  questionOf: 'Pytanie {n} z {total}',
+  seconds: '{n} s',
+  paused: 'Pauza',
+  answered: 'Odpowiedziało {n} z {total} gości',
+  timeUp: 'Czas minął!',
+  correct: 'Dobrze!',
+  answeredIn: 'odpowiedź w {s} s',
+  wrong: 'Tym razem nie',
+  noAnswer: 'Tym razem bez odpowiedzi',
+  answerWas: 'Prawidłowa odpowiedź to',
+  yourPlace: 'Twoje miejsce',
+  ofN: 'z {n}',
+  places: { one: '{n} miejsce', few: '{n} miejsca', many: '{n} miejsc', other: '{n} miejsca' },
+  pointsTotal: 'Razem {n} pkt',
+  lookUp: 'Spójrz na duży ekran!',
+  finished: 'Koniec quizu',
+  ofPlayers: {
+    one: 'z {n} gracza',
+    few: 'z {n} graczy',
+    many: 'z {n} graczy',
+    other: 'z {n} graczy',
+  },
+  totals: '{points} pkt · {correct} z {total} dobrze',
+  podium: 'Podium na dużym ekranie – spójrz w górę!',
+  reconnecting: 'Łączenie… Twoje punkty są bezpieczne',
+  scanAgainTitle: 'Otwórz quiz ponownie',
+  rateLimited: 'Za dużo prób. Poczekaj chwilę.',
+  error: 'Coś poszło nie tak. Spróbuj ponownie.',
+  language: 'Język',
+  confirmTitle: 'Czy to Ty?',
+  confirmYes: 'Tak, to ja',
+  confirmNo: 'Nie, wróć',
+  changeName: 'To nie Ty? Zmień imię',
+  changeNameTitle: 'Oddać to imię?',
+  changeNameYes: 'Tak, wybiorę inne imię',
+  askHost: 'Poproś prowadzącego quiz o zmianę imienia.',
+  searching: 'Szukam…',
+  youChose: 'Twój wybór',
+  sending: 'Jeszcze nie wysłano… próbuję dalej',
+  notSent: 'Twoja odpowiedź nie dotarła. Dotknij jeszcze raz.',
+  tapOnce: 'Dotknij raz – liczy się pierwsze dotknięcie.',
+  practice: 'Runda próbna – dla zabawy',
+  practiceDone: 'Koniec rundy próbnej! Prawdziwy quiz zaraz się zacznie.',
+  connecting: 'Łączenie…',
+  reload: 'Coś się nie wczytało. Dotknij, aby spróbować ponownie.',
+  inLead:
+    'Nie zamykaj tej strony. Jeśli się zamknie, po prostu zeskanuj kod QR jeszcze raz. Quiz zacznie się później tego wieczoru.',
+  nextRoundLead: 'Nie zamykaj tej strony. Następna runda zacznie się wkrótce.',
+  getReady: 'Przeczytaj pytanie… odpowiedzi zaraz się pojawią',
+  coupleYou: 'Grasz dla zabawy – Twoje odpowiedzi pokażemy na końcu',
+  coupleTitle: 'Jak dobrze się znają?',
+  sameAnswer: 'Ta sama odpowiedź!',
+  coupleNoAnswer: 'brak odpowiedzi',
+  rightOf: '{n} z {total} dobrze',
+  placeFun: 'Miejsce {n}. w rankingu (dla zabawy)',
+  agreed: 'Zgodni w {n} z {total}',
+  locked: 'Odpowiedź zapisana',
+  scanAgainLead: 'Dotknij przycisku lub zeskanuj kod QR z dużego ekranu.',
+  waitNext: 'Dołączono w trakcie tego pytania. Następne jest Twoje!',
+  pickLanguage: 'Wybierz język',
+  tooEarlyTitle: 'Jesteś trochę za wcześnie!',
+  tooEarlyLead:
+    'Dołączanie otworzy się tuż przed quizem. Zostaw tę stronę otwartą – przejdzie dalej sama.',
+  rejoin: 'Otwórz quiz',
+  closedTitle: 'Dołączanie jest teraz zamknięte',
+  closedLead:
+    'Poproś prowadzącego quiz o otwarcie. Zostaw tę stronę otwartą – przejdzie dalej sama.',
+  fullRanking: 'Klasyfikacja końcowa',
+  you: 'Ty',
+  nOfTotal: '{n} z {total}',
+  overallRanking: 'Klasyfikacja ogólna',
+  roundsN: { one: '{n} runda', few: '{n} rundy', many: '{n} rund', other: '{n} rundy' },
+};
+
+const es: Messages = {
+  searchTitle: 'Busca tu nombre',
+  searchPlaceholder: 'Empieza a escribir tu nombre',
+  searchHint: 'Escribe al menos 2 letras de tu nombre.',
+  searchNone: 'No hay resultados. Prueba a escribirlo de otra forma.',
+  searchNotOnList: '¿No estás en la lista? Pregunta a quien presenta el quiz.',
+  nameTaken: 'Alguien acaba de elegir este nombre. Si eres tú, pregunta a quien presenta el quiz.',
+  langTitle: '¡Hola, {name}! Elige tu idioma',
+  continue: 'Continuar',
+  inTitle: '¡Ya estás dentro!',
+  playersJoined: 'Jugadores conectados',
+  questionOf: 'Pregunta {n} de {total}',
+  seconds: '{n} s',
+  paused: 'Pausa',
+  answered: 'Han respondido {n} de {total} invitados',
+  timeUp: '¡Se acabó el tiempo!',
+  correct: '¡Correcto!',
+  answeredIn: 'respondido en {s} s',
+  wrong: 'Esta vez no',
+  noAnswer: 'Esta vez sin respuesta',
+  answerWas: 'La respuesta era',
+  waitNext: 'Te has unido durante esta pregunta. ¡La siguiente es tuya!',
+  yourPlace: 'Tu puesto',
+  ofN: 'de {n}',
+  places: { one: '{n} puesto', other: '{n} puestos' },
+  pointsTotal: '{n} puntos en total',
+  lookUp: '¡Mira la pantalla grande!',
+  finished: 'Fin del quiz',
+  ofPlayers: { one: 'de {n} jugador', other: 'de {n} jugadores' },
+  totals: '{points} puntos · {correct} de {total} correctas',
+  podium: '¡Mira la pantalla grande para ver el podio!',
+  reconnecting: 'Reconectando… tus puntos están a salvo',
+  scanAgainTitle: 'Vuelve a abrir el quiz',
+  rateLimited: 'Demasiados intentos. Espera un momento.',
+  error: 'Algo ha fallado. Inténtalo de nuevo.',
+  language: 'Idioma',
+  confirmTitle: '¿Eres tú?',
+  confirmYes: 'Sí, soy yo',
+  confirmNo: 'No, volver',
+  changeName: '¿No eres tú? Cambia el nombre',
+  changeNameTitle: '¿Devolver este nombre?',
+  changeNameYes: 'Sí, elegir otro nombre',
+  askHost: 'Pide a quien presenta el quiz que cambie tu nombre.',
+  searching: 'Buscando…',
+  youChose: 'Has elegido',
+  sending: 'Aún no se ha enviado… lo seguimos intentando',
+  notSent: 'Tu respuesta no ha llegado. Toca otra vez.',
+  tapOnce: 'Toca una vez: cuenta tu primer toque.',
+  practice: 'Ronda de práctica: solo por diversión',
+  practiceDone: '¡Práctica terminada! El quiz de verdad empieza pronto.',
+  connecting: 'Conectando…',
+  reload: 'Algo no se ha cargado. Toca para volver a intentarlo.',
+  inLead:
+    'Deja esta página abierta. Si se cierra, vuelve a escanear el código QR. El quiz empieza más tarde esta noche.',
+  nextRoundLead: 'Deja esta página abierta. La siguiente ronda empieza pronto.',
+  getReady: 'Lee la pregunta… las respuestas llegan enseguida',
+  coupleYou: 'Juegas por diversión: tus respuestas se muestran al final',
+  coupleTitle: '¿Cuánto se conocen?',
+  sameAnswer: '¡La misma respuesta!',
+  coupleNoAnswer: 'sin respuesta',
+  rightOf: '{n} de {total} correctas',
+  placeFun: 'Puesto {n} en la clasificación (por diversión)',
+  agreed: 'Coincidieron en {n} de {total}',
+  locked: 'Tu respuesta está guardada',
+  scanAgainLead: 'Toca el botón o escanea el código QR de la pantalla grande.',
+  searchTaken: 'Ya está elegido',
+  pickLanguage: 'Elige tu idioma',
+  tooEarlyTitle: '¡Llegas un poco pronto!',
+  tooEarlyLead: 'Podrás unirte poco antes del quiz. Deja esta página abierta: seguirá sola.',
+  rejoin: 'Abrir el quiz',
+  closedTitle: 'Ahora no se puede unir nadie',
+  closedLead: 'Pide a quien presenta el quiz que lo abra. Deja esta página abierta: seguirá sola.',
+  fullRanking: 'Clasificación final',
+  you: 'Tú',
+  nOfTotal: '{n} de {total}',
+  overallRanking: 'Clasificación general',
+  roundsN: { one: '{n} ronda', other: '{n} rondas' },
+};
+
+const ca: Messages = {
+  searchTitle: 'Busca el teu nom',
+  searchPlaceholder: 'Comença a escriure el teu nom',
+  searchHint: 'Escriu almenys 2 lletres del teu nom.',
+  searchNone: "Cap resultat. Prova d'escriure'l d'una altra manera.",
+  searchNotOnList: 'No surts a la llista? Pregunta a qui presenta el quiz.',
+  nameTaken: 'Algú acaba de triar aquest nom. Si ets tu, pregunta a qui presenta el quiz.',
+  langTitle: 'Hola, {name}! Tria el teu idioma',
+  continue: 'Continua',
+  inTitle: 'Ja hi ets!',
+  playersJoined: 'Jugadors connectats',
+  questionOf: 'Pregunta {n} de {total}',
+  seconds: '{n} s',
+  paused: 'Pausa',
+  answered: 'Han respost {n} de {total} convidats',
+  timeUp: "S'ha acabat el temps!",
+  correct: 'Correcte!',
+  answeredIn: 'resposta en {s} s',
+  wrong: 'Aquesta vegada no',
+  noAnswer: 'Aquesta vegada sense resposta',
+  answerWas: 'La resposta era',
+  waitNext: "T'has unit durant aquesta pregunta. La següent és teva!",
+  ofN: 'de {n}',
+  places: { one: '{n} posició', other: '{n} posicions' },
+  pointsTotal: '{n} punts en total',
+  lookUp: 'Mira la pantalla gran!',
+  finished: 'Final del quiz',
+  ofPlayers: { one: 'de {n} jugador', other: 'de {n} jugadors' },
+  totals: '{points} punts · {correct} de {total} correctes',
+  podium: 'Mira la pantalla gran per veure el podi!',
+  reconnecting: 'Reconnectant… els teus punts estan segurs',
+  scanAgainTitle: 'Torna a obrir el quiz',
+  rateLimited: 'Massa intents. Espera un moment.',
+  error: 'Alguna cosa ha fallat. Torna-ho a provar.',
+  language: 'Idioma',
+  confirmTitle: 'Ets tu?',
+  confirmYes: 'Sí, soc jo',
+  confirmNo: 'No, torna enrere',
+  changeName: 'No ets tu? Canvia el nom',
+  changeNameTitle: 'Tornar aquest nom?',
+  changeNameYes: 'Sí, triar un altre nom',
+  askHost: 'Demana a qui presenta el quiz que canviï el teu nom.',
+  searching: 'Cercant…',
+  youChose: 'Has triat',
+  sending: "Encara no s'ha enviat… ho continuem provant",
+  notSent: 'La teva resposta no ha arribat. Torna a tocar.',
+  tapOnce: 'Toca una vegada: compta el primer toc.',
+  practice: 'Ronda de pràctica: només per divertir-se',
+  practiceDone: 'Pràctica acabada! El quiz de debò comença aviat.',
+  connecting: 'Connectant…',
+  reload: "Alguna cosa no s'ha carregat. Toca per tornar-ho a provar.",
+  inLead:
+    'Deixa aquesta pàgina oberta. Si es tanca, torna a escanejar el codi QR. El quiz comença més tard aquesta nit.',
+  nextRoundLead: 'Deixa aquesta pàgina oberta. La següent ronda comença aviat.',
+  getReady: 'Llegeix la pregunta… les respostes arriben de seguida',
+  coupleYou: 'Jugues per divertir-te: les teves respostes es mostren al final',
+  coupleTitle: 'Com de bé es coneixen?',
+  sameAnswer: 'La mateixa resposta!',
+  coupleNoAnswer: 'sense resposta',
+  rightOf: '{n} de {total} correctes',
+  placeFun: 'Lloc {n} a la classificació (per divertir-se)',
+  agreed: 'Van coincidir en {n} de {total}',
+  locked: 'La teva resposta està desada',
+  scanAgainLead: 'Toca el botó o escaneja el codi QR de la pantalla gran.',
+  searchTaken: 'Ja està triat',
+  yourPlace: 'El teu lloc',
+  pickLanguage: 'Tria el teu idioma',
+  tooEarlyTitle: "Arribes una mica d'hora!",
+  tooEarlyLead: 'Et podràs unir poc abans del quiz. Deixa aquesta pàgina oberta: continuarà sola.',
+  rejoin: 'Obrir el quiz',
+  closedTitle: "Ara no s'hi pot unir ningú",
+  closedLead:
+    'Demana a qui presenta el quiz que ho obri. Deixa aquesta pàgina oberta: continuarà sola.',
+  fullRanking: 'Classificació final',
+  you: 'Tu',
+  nOfTotal: '{n} de {total}',
+  overallRanking: 'Classificació general',
+  roundsN: { one: '{n} ronda', other: '{n} rondes' },
+};
+
+const de: Messages = {
+  searchTitle: 'Finde deinen Namen',
+  searchPlaceholder: 'Tippe deinen Namen',
+  searchHint: 'Tippe mindestens 2 Buchstaben deines Vornamens.',
+  searchTaken: 'Schon vergeben',
+  searchNone: 'Nichts gefunden. Versuch eine andere Schreibweise.',
+  searchNotOnList: 'Nicht auf der Liste? Frag die Quizleitung.',
+  nameTaken: 'Jemand hat diesen Namen gerade gewählt. Wenn du das bist, frag die Quizleitung.',
+  langTitle: 'Hallo {name}! Wähle deine Sprache',
+  continue: 'Weiter',
+  inTitle: 'Du bist dabei!',
+  playersJoined: 'Mitspieler dabei',
+  questionOf: 'Frage {n} von {total}',
+  seconds: '{n} s',
+  paused: 'Pause',
+  answered: '{n} von {total} Gästen haben geantwortet',
+  timeUp: 'Die Zeit ist um!',
+  correct: 'Richtig!',
+  answeredIn: 'geantwortet in {s} s',
+  wrong: 'Diesmal nicht',
+  noAnswer: 'Diesmal keine Antwort',
+  answerWas: 'Die Antwort war',
+  waitNext: 'Du bist während dieser Frage dazugekommen. Die nächste gehört dir!',
+  yourPlace: 'Dein Platz',
+  ofN: 'von {n}',
+  places: { one: '{n} Platz', other: '{n} Plätze' },
+  pointsTotal: '{n} Punkte insgesamt',
+  lookUp: 'Schau auf die große Leinwand!',
+  finished: 'Quiz vorbei',
+  ofPlayers: { one: 'von {n} Spieler', other: 'von {n} Spielern' },
+  totals: '{points} Punkte · {correct} von {total} richtig',
+  podium: 'Schau auf die große Leinwand – dort ist das Siegerpodest!',
+  reconnecting: 'Verbinde neu… deine Punkte sind sicher',
+  scanAgainTitle: 'Bitte öffne das Quiz noch einmal',
+  rateLimited: 'Zu viele Versuche. Bitte warte kurz.',
+  error: 'Etwas ist schiefgelaufen. Bitte versuch es noch einmal.',
+  language: 'Sprache',
+  confirmTitle: 'Bist du das?',
+  confirmYes: 'Ja, das bin ich',
+  confirmNo: 'Nein, zurück',
+  changeName: 'Nicht du? Namen ändern',
+  changeNameTitle: 'Diesen Namen zurückgeben?',
+  changeNameYes: 'Ja, anderen Namen wählen',
+  askHost: 'Bitte die Quizleitung, deinen Namen zu ändern.',
+  searching: 'Suche…',
+  youChose: 'Deine Wahl',
+  sending: 'Noch nicht gesendet… wird weiter versucht',
+  notSent: 'Deine Antwort ist nicht angekommen. Bitte tipp noch einmal.',
+  tapOnce: 'Einmal tippen: dein erster Tipp zählt.',
+  practice: 'Proberunde: nur zum Spaß',
+  practiceDone: 'Probe vorbei! Das echte Quiz beginnt gleich.',
+  connecting: 'Verbinde…',
+  reload: 'Etwas wurde nicht geladen. Tippe, um es noch einmal zu versuchen.',
+  inLead:
+    'Lass diese Seite offen. Wenn sie sich schließt, scanne einfach den QR-Code noch einmal. Das Quiz beginnt später am Abend.',
+  nextRoundLead: 'Lass diese Seite offen. Die nächste Runde beginnt gleich.',
+  getReady: 'Lies die Frage… die Antworten kommen gleich',
+  coupleYou: 'Du spielst zum Spaß mit: deine Antworten zeigen wir am Ende',
+  coupleTitle: 'Wie gut kennen sie sich?',
+  sameAnswer: 'Gleiche Antwort!',
+  coupleNoAnswer: 'keine Antwort',
+  rightOf: '{n} von {total} richtig',
+  placeFun: 'Platz {n} in der Wertung (nur zum Spaß)',
+  agreed: 'Einig bei {n} von {total}',
+  locked: 'Deine Antwort ist gespeichert',
+  scanAgainLead: 'Tippe auf den Knopf oder scanne den QR-Code auf der Leinwand.',
+  pickLanguage: 'Wähle deine Sprache',
+  tooEarlyTitle: 'Du bist etwas zu früh!',
+  tooEarlyLead:
+    'Die Anmeldung öffnet kurz vor dem Quiz. Lass diese Seite offen: Es geht von allein weiter.',
+  rejoin: 'Quiz öffnen',
+  closedTitle: 'Mitspielen ist gerade geschlossen',
+  closedLead:
+    'Bitte die Quizleitung, es zu öffnen. Lass diese Seite offen: Es geht von allein weiter.',
+  fullRanking: 'Endstand',
+  you: 'Du',
+  nOfTotal: '{n} von {total}',
+  overallRanking: 'Gesamtwertung',
+  roundsN: { one: '{n} Runde', other: '{n} Runden' },
+};
+
+/** Every language's texts (also read by `npm run texts:export` for the translation review). */
+export const MESSAGES: Record<Lang, Messages> = { en, pl, es, ca, de };
+
+/** Language names in their own language, for the language picker. */
+export const LANG_NAMES: Record<Lang, string> = {
+  pl: 'Polski',
+  es: 'Español',
+  ca: 'Català',
+  de: 'Deutsch',
+  en: 'English',
+};
+
+/** Locales for number formatting (e.g. "12 345" in Polish, "4.210" in German). */
+const LOCALES: Record<Lang, string> = {
+  pl: 'pl-PL',
+  es: 'es-ES',
+  ca: 'ca-ES',
+  de: 'de-DE',
+  en: 'en-GB',
+};
+
+type Vars = Record<string, string | number>;
+
+/**
+ * The text for `key` in `lang`, with {placeholders} filled in. Numbers are formatted for the
+ * language; for plural texts, `vars.n` picks the form.
+ */
+export function t(lang: Lang, key: Key, vars: Vars = {}): string {
+  return fill(lang, MESSAGES[lang][key], vars);
+}
+
+/** Any text in `lang` (e.g. the big screen's own texts), filled in the same way as t(). */
+export function fill(lang: Lang, text: Text, vars: Vars = {}): string {
+  let s: string;
+  if (typeof text === 'string') s = text;
+  else {
+    const form = new Intl.PluralRules(LOCALES[lang]).select(Number(vars.n ?? 0));
+    s =
+      (form === 'one' || form === 'few' || form === 'many' ? text[form] : undefined) ?? text.other;
+  }
+  return s.replace(/\{(\w+)\}/g, (_, name: string) => {
+    const v = vars[name];
+    return v === undefined ? `{${name}}` : typeof v === 'number' ? formatNumber(lang, v) : v;
+  });
+}
+
+/** A date and time like "Sat 12 Sep, 21:15" in the language's own style (local time). */
+export function formatDateTime(lang: Lang, ms: number): string {
+  return new Intl.DateTimeFormat(LOCALES[lang], {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(ms);
+}
+
+export function formatNumber(lang: Lang, n: number, decimals = 0): string {
+  return new Intl.NumberFormat(LOCALES[lang], {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(n);
+}
+
+/** The best language from the phone's settings (e.g. navigator.languages), English otherwise. */
+export function detectLang(preferred: readonly string[]): Lang {
+  for (const tag of preferred) {
+    const base = tag.toLowerCase().split('-')[0] as Lang;
+    if ((LANGS as readonly string[]).includes(base)) return base;
+  }
+  return 'en';
+}

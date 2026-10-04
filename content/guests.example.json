@@ -1,0 +1,55 @@
+{
+  "_comment": "FAKE example data. The real list goes in content/guests.json (git-ignored). Each guest: id (letters, digits, - or _, unique), name, country (two capital letters: PL, ES, DE, ...), side (bride or groom). Checked by validateGuests() in apps/server/src/guests.ts. Optional \"role\": \"bride\" or \"groom\" marks the couple themselves (at most one of each), for question sets where \"the couple plays along\".",
+  "guests": [
+    {
+      "id": "g001",
+      "name": "Łukasz Wiśniewski",
+      "country": "PL",
+      "side": "bride"
+    },
+    {
+      "id": "g002",
+      "name": "Núria Puigdomènech",
+      "country": "ES",
+      "side": "groom"
+    },
+    {
+      "id": "g003",
+      "name": "Jürgen Weiß",
+      "country": "DE",
+      "side": "bride"
+    },
+    {
+      "id": "g004",
+      "name": "Małgorzata Żółkiewska",
+      "country": "PL",
+      "side": "bride",
+      "role": "bride"
+    },
+    {
+      "id": "g005",
+      "name": "Jordi Castañer",
+      "country": "ES",
+      "side": "groom",
+      "role": "groom"
+    },
+    {
+      "id": "g006",
+      "name": "Łukasz Nowak",
+      "country": "PL",
+      "side": "groom"
+    },
+    {
+      "id": "g007",
+      "name": "Lukas Becker",
+      "country": "DE",
+      "side": "groom"
+    },
+    {
+      "id": "g008",
+      "name": "Núria Vidal",
+      "country": "ES",
+      "side": "groom"
+    }
+  ]
+}

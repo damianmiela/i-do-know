@@ -1,0 +1,1055 @@
+/* The phone (/play), after the approved mockup docs/mockups/phone.html.
+   Colours, fonts and radii only through the variables in theme.css. */
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ivory);
+  font-family: var(--f-body);
+  line-height: 1.45;
+  -webkit-text-size-adjust: 100%;
+}
+h1,
+h2,
+p {
+  margin: 0;
+}
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+button:disabled {
+  cursor: default;
+}
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.ic,
+.sym {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  flex: none;
+}
+
+/* ---------- the page ---------- */
+.app {
+  min-height: 100vh; /* older phones */
+  min-height: 100dvh;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: var(--s4) var(--s5) var(--s5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+  background:
+    radial-gradient(120% 60% at 50% -10%, var(--glow-1) 0%, transparent 60%),
+    radial-gradient(80% 50% at 100% 110%, var(--glow-2) 0%, transparent 60%), var(--night);
+}
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 32px;
+  font-size: 16px;
+  gap: var(--s2);
+}
+.bar-end {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+}
+.logo {
+  display: block;
+  height: 30px;
+  width: auto;
+}
+.logo-big {
+  width: 200px;
+  max-width: 60%;
+  height: auto;
+}
+.lang-button {
+  /* at least 44 px to tap; the flag alone (Phase 6.10), the border shows it is a button */
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: var(--night-2);
+  padding: 0 var(--s2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.grow {
+  flex: 1;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+.stack.tight {
+  gap: var(--s2);
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--s4);
+}
+.column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--s4);
+}
+.center-text {
+  text-align: center;
+}
+
+/* ---------- text ---------- */
+.eyebrow {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--gold);
+}
+.h-phone {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.h-phone.with-icon {
+  display: flex;
+  gap: var(--s2);
+  align-items: center;
+  justify-content: center;
+}
+.h-phone.with-icon .ic {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+}
+.lead {
+  font-size: 17px;
+  color: var(--ivory-soft);
+}
+.lead b {
+  color: var(--ivory);
+}
+.caption {
+  color: var(--ivory-soft);
+  font-size: 16px; /* nothing a guest has to read is smaller */
+}
+.num {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.num.big {
+  font-size: 44px;
+}
+.notice {
+  padding: var(--s3) var(--s4);
+  border-radius: var(--r-md);
+  background: var(--warn-bg);
+  border: 1px solid var(--warn);
+  color: var(--warn-text);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ivory);
+  background: var(--tint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-variant-numeric: tabular-nums;
+}
+.chip.gold {
+  background: transparent;
+  border-color: var(--gold);
+  color: var(--gold);
+  font-size: 17px;
+}
+
+/* ---------- controls ---------- */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  width: 100%;
+  min-height: 56px;
+  border: 0;
+  border-radius: var(--r-md);
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--ink);
+  background: var(--gold);
+}
+.btn:disabled {
+  opacity: 0.5;
+}
+.btn.quiet {
+  background: transparent;
+  color: var(--ivory-soft);
+  border: 1px solid var(--line-strong);
+}
+.field {
+  width: 100%;
+  min-height: 56px;
+  border-radius: var(--r-md);
+  border: 2px solid var(--gold);
+  background: var(--night-2);
+  color: var(--ivory);
+  padding: 0 var(--s4);
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  font: 700 19px var(--f-body);
+}
+.field .ic {
+  color: var(--ivory-faint);
+}
+.field input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  outline: none;
+  font-size: 19px; /* 16px+ so iPhones don't zoom in */
+  font-weight: 700;
+}
+.field ::placeholder,
+.field::placeholder {
+  color: var(--ivory-faint);
+  font-weight: 600;
+}
+.code-input {
+  text-align: center;
+  letter-spacing: 0.3em;
+  font-size: 26px;
+}
+.surface {
+  background: var(--night-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--s4);
+}
+.surface.wide {
+  width: 100%;
+  display: grid;
+  gap: var(--s1);
+}
+
+/* ---------- joining ---------- */
+.names {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+.name {
+  overflow-wrap: anywhere;
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  min-height: 56px;
+  padding: var(--s2) var(--s4);
+  border-radius: var(--r-md);
+  background: var(--night-2);
+  border: 1px solid var(--line);
+  font-weight: 700;
+  font-size: 17px;
+  text-align: left;
+}
+.name .flag {
+  margin-left: auto;
+}
+.name:disabled {
+  color: var(--ivory-faint);
+}
+.name small {
+  font-weight: 600;
+  font-size: 16px;
+}
+.langs {
+  display: grid;
+  gap: var(--s2);
+}
+.lang {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  min-height: 58px;
+  padding: 0 var(--s4);
+  border-radius: var(--r-md);
+  background: var(--night-2);
+  border: 1px solid var(--line);
+  font-size: 18px;
+  font-weight: 700;
+}
+.lang.on {
+  border: 2px solid var(--gold);
+  background: var(--night-3);
+}
+.lang .ic {
+  margin-left: auto;
+  color: var(--gold);
+  width: 22px;
+  height: 22px;
+}
+
+/* ---------- question ---------- */
+.q {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 27px;
+  line-height: 1.2;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.timer {
+  height: 8px;
+  border-radius: 99px;
+  background: var(--tint);
+  overflow: hidden;
+}
+.timer > i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold));
+  transition: width 0.2s linear;
+}
+.photo {
+  width: 100%;
+  max-height: 26vh; /* a small reminder: the big screen shows it big; the tiles must fit */
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  background: var(--night-2);
+}
+.answers {
+  display: grid;
+  /* minmax(0, …): one long word (German!) must not widen the grid past the screen */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: var(--s3);
+}
+.answers.duo {
+  grid-template-columns: 1fr;
+}
+.ans {
+  border: 0;
+  border-radius: var(--r-md);
+  padding: var(--s4);
+  min-height: 118px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--s2);
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.2;
+  text-align: left;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  color: var(--c-answer-text);
+  box-shadow: inset 0 -4px 0 var(--shade);
+}
+.ans .sym {
+  width: 30px;
+  height: 30px;
+  opacity: 0.95;
+}
+.ans.heart {
+  background: var(--c-heart);
+}
+.ans.flower {
+  background: var(--c-flower);
+}
+.ans.star {
+  background: var(--c-star);
+}
+.ans.moon {
+  background: var(--c-moon);
+  color: var(--c-moon-text);
+}
+.ans:disabled:not(.picked) {
+  opacity: 0.35;
+}
+.ans.picked {
+  box-shadow:
+    0 0 0 4px var(--night),
+    0 0 0 7px var(--ivory);
+}
+.answers.duo .ans {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--s4);
+  font-size: 26px;
+  font-family: var(--f-display);
+  font-weight: 600;
+}
+.answers.duo .ans .sym {
+  width: 40px;
+  height: 40px;
+}
+.answers.compact .ans {
+  min-height: 0;
+}
+.ans {
+  position: relative;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+/* answered: the question stays; the other answers step back, yours keeps its frame and a ✓ */
+.ans.faded,
+.ans.faded:disabled {
+  opacity: 0.28;
+  transform: scale(0.96);
+}
+.ans .mark {
+  position: absolute;
+  top: var(--s2);
+  right: var(--s2);
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--ivory);
+  color: var(--night);
+  animation: mark-in 0.35s ease-out;
+}
+.ans .mark .ic {
+  width: 20px;
+  height: 20px;
+}
+/* bride-or-groom tiles are one row: the ✓ sits at the end of it, never over the name */
+.answers.duo .ans .mark {
+  position: static;
+  margin-left: auto;
+  flex: none;
+}
+@keyframes mark-in {
+  from {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+}
+.saved {
+  display: grid;
+  gap: var(--s1);
+  text-align: center;
+}
+.saved .with-icon {
+  display: flex;
+  gap: var(--s2);
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+.saved-time {
+  font-size: 17px;
+  color: var(--ivory-soft);
+  font-variant-numeric: tabular-nums;
+}
+/* the texts are "answered in 3.8 s" (also used mid-sentence): a capital on its own line */
+.saved-time::first-letter {
+  text-transform: uppercase;
+}
+.saved .with-icon .ic {
+  width: 20px;
+  height: 20px;
+  color: var(--gold);
+}
+
+/* ---------- a question fits one screen (Phase 6.9) ----------
+   The page is exactly the screen's height; the photo and the answer tiles share what the texts
+   leave (the photo gives way first), and spacing and the question's size follow the height. */
+.app.fit {
+  height: 100vh; /* older phones */
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+  gap: clamp(6px, 1.6dvh, 16px);
+  padding-top: clamp(8px, 2dvh, 16px);
+  padding-bottom: clamp(8px, 2dvh, 20px);
+}
+.app.fit .q {
+  font-size: clamp(19px, 4.2dvh, 27px);
+  flex: none;
+  /* the last resort for a very long text on a very small screen: it scrolls in its own box,
+     the answers stay whole */
+  max-height: 32dvh;
+  overflow-y: auto;
+}
+.app.fit .q.long {
+  font-size: clamp(17px, 3.1dvh, 22px);
+}
+/* with a photo, the symbol sits beside the answer text: the tiles need less height */
+.app.fit .answers.compact .ans {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.app.fit .photo {
+  flex: 1 1 0;
+  min-height: 56px;
+  max-height: 26dvh;
+  width: auto;
+  max-width: 100%;
+  align-self: center;
+}
+.app.fit .answers {
+  flex: 3 1 0;
+  min-height: 0;
+  grid-auto-rows: minmax(0, 1fr);
+  gap: clamp(6px, 1.4dvh, 12px);
+}
+.app.fit .ans {
+  min-height: 0;
+  padding: clamp(8px, 1.8dvh, 16px);
+  font-size: clamp(16px, 2.8dvh, 20px);
+}
+.app.fit .answers.duo .ans {
+  font-size: clamp(20px, 3.6dvh, 26px);
+}
+.app.fit .ans .sym {
+  width: clamp(20px, 4dvh, 30px);
+  height: clamp(20px, 4dvh, 30px);
+}
+.app.fit .saved {
+  flex: none;
+  gap: 0;
+}
+.app.fit .saved .with-icon,
+.app.fit .saved-time,
+.app.fit .saved .caption {
+  font-size: 16px;
+}
+
+/* ---------- top bar: short and plain, always one line (Phase 6.10) ---------- */
+.bar-count,
+.bar-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ivory);
+  white-space: nowrap;
+}
+.bar-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 45vw;
+}
+
+/* ---------- between questions: you and your neighbours (Phase 6.10) ---------- */
+.around-wrap {
+  width: 100%;
+  display: grid;
+  gap: var(--s3);
+  justify-items: center;
+}
+.around {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-auto-rows: 52px; /* + 8 px gap = AROUND_PITCH (60) in Quiz.tsx */
+  gap: 8px;
+}
+.around li {
+  display: grid;
+  grid-template-columns: 2.2em minmax(0, 1fr) auto 3em;
+  gap: var(--s2);
+  align-items: center;
+  padding: 0 var(--s3);
+  border-radius: var(--r-md);
+  background: var(--night-2);
+  font-size: 17px;
+  font-weight: 700;
+}
+.around .pos {
+  color: var(--gold);
+}
+.around .who {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.around .mv {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+  font-size: 16px;
+  color: var(--ivory-faint);
+}
+.around .mv.up {
+  color: var(--good-text);
+}
+.around .mv.down {
+  color: var(--bad-text, var(--ivory-faint));
+}
+.around .mv .ic {
+  width: 14px;
+  height: 14px;
+}
+.around li.me {
+  background: var(--gold);
+  color: var(--ink);
+}
+.around li.me .pos,
+.around li.me .mv {
+  color: var(--ink);
+}
+/* the same slide as the big screen's Top 10: old order first, then the new one */
+.around.anim li {
+  animation: p-slide 1s 0.4s cubic-bezier(0.3, 0.7, 0.2, 1) both;
+}
+.around.anim li.fresh {
+  animation-name: p-slide-in;
+}
+@keyframes p-slide {
+  from {
+    transform: translateY(var(--from));
+  }
+}
+@keyframes p-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--from));
+  }
+}
+
+/* ---------- the full ranking after the podium (Phase 6.9) ---------- */
+.full-ranking {
+  display: grid;
+  gap: var(--s3);
+  align-content: start;
+  justify-items: center;
+}
+.ranking {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  gap: var(--s1);
+}
+.ranking li {
+  display: grid;
+  grid-template-columns: 2.6em minmax(0, 1fr) auto;
+  gap: var(--s2);
+  align-items: center;
+  min-height: 48px;
+  padding: var(--s2) var(--s3);
+  border-radius: var(--r-md);
+  background: var(--night-2);
+  font-size: 17px;
+  font-weight: 700;
+}
+.ranking .pos {
+  color: var(--gold);
+}
+.ranking .who {
+  display: grid;
+  overflow-wrap: anywhere;
+}
+.ranking .who small {
+  color: var(--night);
+  font-size: 16px;
+}
+.ranking li.me {
+  background: var(--gold);
+  color: var(--ink);
+}
+.ranking li.me .pos {
+  color: var(--ink);
+}
+
+/* ---------- reveal and rank ---------- */
+.verdict {
+  border-radius: var(--r-lg);
+  padding: var(--s5) var(--s4);
+  display: grid;
+  justify-items: center;
+  gap: var(--s2);
+  text-align: center;
+}
+.verdict.good {
+  background: var(--good-bg);
+  border: 2px solid var(--good);
+}
+.verdict.bad {
+  background: var(--bad-bg);
+  border: 2px solid var(--bad);
+}
+.verdict .badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--c-answer-text);
+}
+.verdict.good .badge {
+  background: var(--good);
+}
+.verdict.bad .badge {
+  background: var(--bad);
+}
+.verdict .badge .ic {
+  width: 30px;
+  height: 30px;
+}
+.num.points {
+  font-size: 52px;
+  color: var(--gold);
+}
+.answer-chip {
+  font-size: 16px;
+  padding: 6px 14px;
+}
+.answer-chip .ic {
+  width: 18px;
+  height: 18px;
+}
+.answer-chip.heart .ic {
+  color: var(--c-heart);
+}
+.answer-chip.flower .ic {
+  color: var(--c-flower);
+}
+.answer-chip.star .ic {
+  color: var(--c-star-icon);
+}
+.answer-chip.moon .ic {
+  color: var(--c-moon);
+}
+.rank {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: var(--s1) var(--s3);
+}
+.rank .label {
+  color: var(--ivory-soft);
+  font-size: 16px;
+  grid-column: 1 / -1;
+}
+.rank .total {
+  grid-column: 1 / -1;
+}
+.num.place {
+  font-size: 40px;
+}
+.num.place small {
+  font-size: 18px;
+  color: var(--ivory-soft);
+}
+.move {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-weight: 800;
+  font-size: 16px;
+}
+.move.up {
+  color: var(--good-text);
+}
+.move.down {
+  color: var(--bad-text);
+}
+.move .ic {
+  width: 14px;
+  height: 14px;
+}
+.num.final-place {
+  font-size: 96px;
+  color: var(--gold);
+}
+
+/* ---------- connection banner ---------- */
+.offline {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: var(--s3) var(--s4);
+  border-radius: var(--r-md);
+  background: var(--warn-bg);
+  border: 1px solid var(--warn);
+  color: var(--warn-text);
+  font-weight: 700;
+  font-size: 16px;
+}
+.offline .ic {
+  width: 18px;
+  height: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- warm-up, confirmations, small links ---------- */
+.practice {
+  align-self: center;
+  padding: var(--s1) var(--s4);
+  border-radius: 999px;
+  border: 1px dashed var(--gold);
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 16px;
+  text-align: center;
+}
+.confirm-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s3);
+}
+.big-name {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.link-button {
+  border: 0;
+  background: none;
+  color: var(--ivory-soft);
+  text-decoration: underline;
+  font-size: 16px;
+  min-height: 44px;
+  padding: 0 var(--s3);
+}
+
+/* ---------- motion (Phase 6.5): short and light on the phone; never delays an answer ---------- */
+@keyframes p-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+@keyframes p-badge {
+  from {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+}
+@keyframes p-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+.verdict {
+  animation: p-pop 0.5s ease-out both;
+}
+.verdict .badge {
+  animation: p-badge 0.5s 0.15s ease-out both;
+}
+/* only on the reveal: the Top 10 and final screens show the same card without moving it again */
+.reveal .rank {
+  animation: p-up 0.5s 0.3s ease-out both;
+}
+.reveal .move {
+  animation: p-pop 0.5s 0.8s ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .verdict,
+  .verdict .badge,
+  .reveal .rank,
+  .reveal .move {
+    animation: none;
+  }
+}
+
+/* the question editor's preview frame: look only, no taps */
+.app.preview {
+  pointer-events: none;
+}
+
+/* reading time (Phase 9.5): where the answers will appear */
+.reading .lead {
+  font-size: 19px;
+  color: var(--gold);
+  text-align: center;
+}
+
+/* ---------- the couple (Phase 9.5) ---------- */
+.couple-you {
+  color: var(--gold);
+}
+.couple-review {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+.couple-review .q.small {
+  font-size: 19px;
+  margin: 0;
+}
+.couple-opts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+.couple-opts li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s2);
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  color: var(--c-answer-text);
+  font-weight: 800;
+  font-size: 16px;
+  opacity: 0.55;
+}
+.couple-opts li.right {
+  opacity: 1;
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+.couple-opts li.heart {
+  background: var(--c-heart);
+}
+.couple-opts li.flower {
+  background: var(--c-flower);
+}
+.couple-opts li.star {
+  background: var(--c-star);
+}
+.couple-opts li.moon {
+  background: var(--c-moon);
+  color: var(--c-moon-text);
+}
+.couple-opts .sym {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+.couple-opts .label {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.couple-opts .ok {
+  width: 22px;
+  height: 22px;
+}
+.couple-opts .picks {
+  display: flex;
+  gap: 6px;
+  flex-basis: 100%;
+}
+.couple-opts .picks:empty {
+  display: none;
+}
+.pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--ivory);
+  color: var(--ink);
+  font-size: 16px;
+}
+.pick .ic {
+  width: 16px;
+  height: 16px;
+}
+.pick.bride .ic {
+  color: var(--c-heart);
+}
+.pick.groom .ic {
+  color: var(--c-star);
+}
+.couple-line {
+  color: var(--gold);
+  min-height: 1.4em;
+}
+.couple-sum {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+.couple-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+.couple-card .sym {
+  width: 36px;
+  height: 36px;
+}
+.couple-card.bride .sym {
+  color: var(--c-heart);
+}
+.couple-card.groom .sym {
+  color: var(--c-star-icon);
+}
+.couple-card b {
+  font-size: 20px;
+}
+.couple-card span {
+  font-size: 18px;
+  color: var(--gold);
+  font-weight: 800;
+}
+.couple-card small {
+  font-size: 16px;
+  color: var(--ivory-soft);
+}

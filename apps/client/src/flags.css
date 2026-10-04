@@ -1,0 +1,50 @@
+/* Flags in CSS, so they look the same everywhere (Windows has no emoji flags). Used by the phone
+   and the big screen. National flag colours are fixed by the flags themselves, so they live here,
+   not in the theme. */
+.flag {
+  display: inline-block;
+  width: 26px;
+  height: 18px;
+  border-radius: 3px;
+  flex: none;
+  box-shadow: 0 0 0 1px var(--shade);
+  background: var(--night-3);
+}
+.flag.lang-pl,
+.flag.cc-pl {
+  background: linear-gradient(#fff 50%, #dc143c 50%);
+}
+.flag.lang-es,
+.flag.cc-es {
+  background: linear-gradient(#aa151b 25%, #f1bf00 25% 75%, #aa151b 75%);
+}
+.flag.lang-ca {
+  background: repeating-linear-gradient(#fcdd09 0 2px, #da121a 2px 4px);
+}
+.flag.lang-de,
+.flag.cc-de {
+  background: linear-gradient(#000 33.3%, #dd0000 33.3% 66.6%, #ffce00 66.6%);
+}
+/* English has no single flag: an "EN" badge (theme colours) */
+.flag.lang-en {
+  background: var(--badge-en);
+  position: relative;
+}
+.flag.lang-en::after {
+  content: 'EN';
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--badge-en-text);
+}
+/* a guest's country without a drawn flag shows its code */
+.flag.cc-other {
+  display: inline-grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--ivory-soft);
+}

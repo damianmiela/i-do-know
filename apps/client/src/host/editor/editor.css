@@ -1,0 +1,253 @@
+/* The question editor (host panel). Colours, fonts and radii only through theme.css. */
+
+.e-lists,
+.e-langs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: var(--s1);
+  padding: var(--s1);
+  background: var(--night-3);
+  border-radius: var(--r-sm);
+}
+.e-lists button,
+.e-langs button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--ivory-soft);
+  font-weight: 800;
+  font-size: 14px;
+  position: relative;
+}
+.e-lists button.on,
+.e-langs button.on {
+  background: var(--gold);
+  color: var(--ink);
+}
+.e-lists small {
+  font-weight: 700;
+  opacity: 0.7;
+}
+/* a language that still misses a translation: a red dot */
+.e-langs button.lacks::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bad);
+}
+
+.e-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s1);
+}
+.e-list li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  gap: var(--s2);
+  align-items: center;
+  padding: var(--s2) var(--s3);
+  border-radius: var(--r-sm);
+  background: var(--night-3);
+}
+.e-list li.h-muted {
+  display: block;
+  background: none;
+}
+.e-list .n {
+  color: var(--gold);
+  font-weight: 800;
+}
+.e-list .t {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-weight: 700;
+}
+.e-list small {
+  color: var(--ivory-soft);
+  font-size: 13px;
+  font-weight: 600;
+}
+.e-list .e-missing {
+  color: var(--bad-text);
+}
+.e-list .acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1);
+  justify-content: flex-end;
+}
+.h-btn.small.danger {
+  border-color: var(--bad);
+  color: var(--bad-text);
+}
+
+.e-form {
+  display: grid;
+  gap: var(--s4);
+}
+.e-field {
+  display: grid;
+  gap: var(--s1);
+  font-weight: 700;
+}
+.e-field > span {
+  color: var(--ivory-soft);
+  font-size: 14px;
+}
+.e-text {
+  min-height: 84px;
+  padding: var(--s2) var(--s3);
+  resize: vertical;
+}
+.e-photo {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+.e-photo img {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: var(--r-sm);
+  background: var(--night-3);
+}
+.e-photo label.h-btn {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.e-answers {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s2);
+}
+.e-answers legend {
+  color: var(--ivory-soft);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: var(--s1);
+}
+.e-answer {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  gap: var(--s2);
+  align-items: center;
+}
+.e-answer input[type='radio'] {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--good);
+}
+.e-note {
+  padding: var(--s3);
+  border-radius: var(--r-sm);
+  background: var(--warn-bg);
+  color: var(--warn-text);
+  font-size: 14px;
+  font-weight: 700;
+}
+.e-problems {
+  margin: 0;
+  padding: var(--s3) var(--s3) var(--s3) var(--s6);
+  border-radius: var(--r-sm);
+  background: var(--bad-bg);
+  color: var(--bad-text);
+  font-size: 14px;
+  font-weight: 700;
+}
+.e-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+.e-save .h-btn.big:not(.quiet) {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+}
+
+/* the preview: the real big screen (16:9) and a phone, scaled down */
+.e-preview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: var(--s3);
+  align-items: start;
+}
+.e-preview iframe {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: var(--page);
+}
+.e-screen {
+  aspect-ratio: 16 / 9;
+}
+/* the phone renders at a real phone width (390 px) and is scaled down to fit */
+.e-phone-box {
+  width: 180px;
+  height: calc(760px * 180 / 390);
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+}
+.e-phone-box iframe {
+  width: 390px;
+  height: 760px;
+  border: 0;
+  border-radius: 0;
+  transform: scale(calc(180 / 390));
+  transform-origin: 0 0;
+}
+@media (max-width: 860px) {
+  .e-preview {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+}
+
+@media (max-width: 860px) {
+  /* on a phone the buttons go under the question, so the text keeps the full width */
+  .e-list li {
+    grid-template-columns: 28px minmax(0, 1fr);
+  }
+  .e-list .acts {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+/* question sets (Phase 6.10): as many tabs as sets, wrapping onto more rows */
+.e-lists {
+  display: flex;
+  flex-wrap: wrap;
+}
+.e-lists button {
+  flex: 1 1 auto;
+}
+.e-naming,
+.e-set-acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  align-items: center;
+}
+.e-naming .h-input {
+  flex: 1 1 200px;
+}

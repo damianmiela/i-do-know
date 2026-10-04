@@ -1,0 +1,311 @@
+{
+  "_comment": "FAKE example data. The real questions go in content/questions.json (git-ignored). \"timeLimitSec\": the countdown of every question in seconds (10 to 300; the host can change it in the waiting room). Checked by validateQuestions() in apps/server/src/game/quiz.ts. \"warmup\" (optional): practice questions the host can play any number of times before the quiz; their points never count. \"sets\" (optional): extra rounds, each with an id (set- + 2 to 12 letters or digits), a name and its own questions; the host picks the round in the waiting room.",
+  "timeLimitSec": 60,
+  "questions": [
+    {
+      "id": "q001",
+      "kind": "choice",
+      "text": {
+        "pl": "Gdzie Anna i Ben się poznali?",
+        "es": "¿Dónde se conocieron Anna y Ben?",
+        "ca": "On es van conèixer l'Anna i en Ben?",
+        "de": "Wo haben sich Anna und Ben kennengelernt?",
+        "en": "Where did Anna and Ben meet?"
+      },
+      "options": [
+        {
+          "pl": "W pracy",
+          "es": "En el trabajo",
+          "ca": "A la feina",
+          "de": "Bei der Arbeit",
+          "en": "At work"
+        },
+        {
+          "pl": "Na imprezie",
+          "es": "En una fiesta",
+          "ca": "En una festa",
+          "de": "Auf einer Party",
+          "en": "At a party"
+        },
+        {
+          "pl": "Na Erasmusie",
+          "es": "En el Erasmus",
+          "ca": "A l'Erasmus",
+          "de": "Im Erasmus",
+          "en": "On Erasmus"
+        },
+        {
+          "pl": "Przez aplikację",
+          "es": "Por una app",
+          "ca": "Per una app",
+          "de": "Über eine App",
+          "en": "Through an app"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": "q002",
+      "kind": "bride-or-groom",
+      "text": {
+        "pl": "Kto lepiej gotuje?",
+        "es": "¿Quién cocina mejor?",
+        "ca": "Qui cuina millor?",
+        "de": "Wer kocht besser?",
+        "en": "Who is the better cook?"
+      },
+      "options": [
+        {
+          "pl": "Anna",
+          "es": "Anna",
+          "ca": "Anna",
+          "de": "Anna",
+          "en": "Anna"
+        },
+        {
+          "pl": "Ben",
+          "es": "Ben",
+          "ca": "Ben",
+          "de": "Ben",
+          "en": "Ben"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": "q003",
+      "kind": "photo",
+      "photo": "example-baby.webp",
+      "text": {
+        "pl": "Czyje to zdjęcie z dzieciństwa?",
+        "es": "¿De quién es esta foto de bebé?",
+        "ca": "De qui és aquesta foto de nadó?",
+        "de": "Wessen Babyfoto ist das?",
+        "en": "Whose baby photo is this?"
+      },
+      "options": [
+        {
+          "pl": "Anna",
+          "es": "Anna",
+          "ca": "Anna",
+          "de": "Anna",
+          "en": "Anna"
+        },
+        {
+          "pl": "Ben",
+          "es": "Ben",
+          "ca": "Ben",
+          "de": "Ben",
+          "en": "Ben"
+        },
+        {
+          "pl": "Tom",
+          "es": "Tom",
+          "ca": "Tom",
+          "de": "Tom",
+          "en": "Tom"
+        }
+      ],
+      "correct": 0
+    }
+  ],
+  "warmup": [
+    {
+      "id": "w001",
+      "kind": "choice",
+      "text": {
+        "pl": "Co dziś świętujemy?",
+        "es": "¿Qué celebramos hoy?",
+        "ca": "Què celebrem avui?",
+        "de": "Was feiern wir heute?",
+        "en": "What are we celebrating today?"
+      },
+      "options": [
+        {
+          "pl": "Zwykły wtorek",
+          "es": "Un martes cualquiera",
+          "ca": "Un dimarts qualsevol",
+          "de": "Einen ganz normalen Dienstag",
+          "en": "A normal Tuesday"
+        },
+        {
+          "pl": "Wesele!",
+          "es": "¡Una boda!",
+          "ca": "Un casament!",
+          "de": "Eine Hochzeit!",
+          "en": "A wedding!"
+        },
+        {
+          "pl": "Mecz piłki nożnej",
+          "es": "Un partido de fútbol",
+          "ca": "Un partit de futbol",
+          "de": "Ein Fußballspiel",
+          "en": "A football match"
+        },
+        {
+          "pl": "Wizytę u dentysty",
+          "es": "Una cita con el dentista",
+          "ca": "Una visita al dentista",
+          "de": "Einen Zahnarzttermin",
+          "en": "A dentist appointment"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": "w002",
+      "kind": "bride-or-groom",
+      "text": {
+        "pl": "Kto jest dziś panem młodym?",
+        "es": "¿Quién es el novio hoy?",
+        "ca": "Qui és el nuvi avui?",
+        "de": "Wer ist heute der Bräutigam?",
+        "en": "Who is the groom today?"
+      },
+      "options": [
+        {
+          "pl": "Anna",
+          "es": "Anna",
+          "ca": "Anna",
+          "de": "Anna",
+          "en": "Anna"
+        },
+        {
+          "pl": "Ben",
+          "es": "Ben",
+          "ca": "Ben",
+          "de": "Ben",
+          "en": "Ben"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": "w003",
+      "kind": "choice",
+      "text": {
+        "pl": "Czego nikt nie potrzebuje na weselu?",
+        "es": "¿Qué no necesita nadie en una boda?",
+        "ca": "Què no necessita ningú en un casament?",
+        "de": "Was braucht auf einer Hochzeit niemand?",
+        "en": "What does nobody need at a wedding?"
+      },
+      "options": [
+        {
+          "pl": "Obrączek",
+          "es": "Anillos",
+          "ca": "Anells",
+          "de": "Ringe",
+          "en": "Rings"
+        },
+        {
+          "pl": "Tortu",
+          "es": "Tarta",
+          "ca": "Pastís",
+          "de": "Torte",
+          "en": "Cake"
+        },
+        {
+          "pl": "Muzyki",
+          "es": "Música",
+          "ca": "Música",
+          "de": "Musik",
+          "en": "Music"
+        },
+        {
+          "pl": "Zadania domowego",
+          "es": "Deberes",
+          "ca": "Deures",
+          "de": "Hausaufgaben",
+          "en": "Homework"
+        }
+      ],
+      "correct": 3
+    }
+  ],
+  "sets": [
+    {
+      "id": "set-example",
+      "name": "Poland vs Spain",
+      "questions": [
+        {
+          "id": "s001",
+          "kind": "choice",
+          "text": {
+            "pl": "Ile województw ma Polska?",
+            "es": "¿Cuántos voivodatos tiene Polonia?",
+            "ca": "Quants voivodats té Polònia?",
+            "de": "Wie viele Woiwodschaften hat Polen?",
+            "en": "How many voivodeships does Poland have?"
+          },
+          "options": [
+            {
+              "pl": "12",
+              "es": "12",
+              "ca": "12",
+              "de": "12",
+              "en": "12"
+            },
+            {
+              "pl": "16",
+              "es": "16",
+              "ca": "16",
+              "de": "16",
+              "en": "16"
+            },
+            {
+              "pl": "20",
+              "es": "20",
+              "ca": "20",
+              "de": "20",
+              "en": "20"
+            }
+          ],
+          "correct": 1
+        },
+        {
+          "id": "s002",
+          "kind": "choice",
+          "text": {
+            "pl": "Z jakiego regionu Hiszpanii pochodzi paella?",
+            "es": "¿De qué región de España es la paella?",
+            "ca": "De quina regió d'Espanya és la paella?",
+            "de": "Aus welcher Region Spaniens stammt die Paella?",
+            "en": "Which region of Spain is paella from?"
+          },
+          "options": [
+            {
+              "pl": "Andaluzja",
+              "es": "Andalucía",
+              "ca": "Andalusia",
+              "de": "Andalusien",
+              "en": "Andalusia"
+            },
+            {
+              "pl": "Walencja",
+              "es": "Valencia",
+              "ca": "València",
+              "de": "Valencia",
+              "en": "Valencia"
+            },
+            {
+              "pl": "Galicja",
+              "es": "Galicia",
+              "ca": "Galícia",
+              "de": "Galicien",
+              "en": "Galicia"
+            },
+            {
+              "pl": "Katalonia",
+              "es": "Cataluña",
+              "ca": "Catalunya",
+              "de": "Katalonien",
+              "en": "Catalonia"
+            }
+          ],
+          "correct": 1
+        }
+      ]
+    }
+  ]
+}

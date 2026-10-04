@@ -1,0 +1,114 @@
+/*
+ * Theme: the ONLY place for colours, fonts, radii and the answer colour/symbol mapping
+ * (Phase 0.5 decision). Components use these variables, never hard-coded colours.
+ * Based on the approved mockups (docs/mockups, v2 "midnight garden").
+ */
+
+/* Self-hosted fonts (SIL Open Font License, see /fonts/LICENSE-*.txt). The latin-ext files
+   load only when a page has letters like ł, ż or ő. */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(/fonts/fraunces-latin-ext-wght-normal.woff2) format('woff2-variations');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(/fonts/fraunces-latin-wght-normal.woff2) format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url(/fonts/manrope-latin-ext-wght-normal.woff2) format('woff2-variations');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url(/fonts/manrope-latin-wght-normal.woff2) format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* palette */
+  --night: #121833; /* app background */
+  --night-2: #1b2347; /* raised surface */
+  --night-3: #27315c; /* hover / pressed / selected */
+  --page: #0b0f22; /* behind the app */
+  --glow-1: #2a3470; /* background glow, top */
+  --glow-2: #3a2447; /* background glow, bottom corner */
+  --ivory: #f7f1e6; /* primary text, light cards */
+  --ivory-soft: #c9c3d9; /* secondary text */
+  --ivory-faint: #8d89a6; /* captions, disabled */
+  --gold: #d8b36a; /* accent: champagne gold */
+  --gold-deep: #b18b45;
+  --glow-gold: #d8b36a66; /* soft gold glow (big screen animations) */
+  --blush: #e7aab2;
+  --ink: #1b1d33; /* text on ivory and gold */
+  --good: #4fae7f;
+  --good-bg: #4fae7f26;
+  --good-text: #7fd6a5;
+  --bad: #d4626c;
+  --bad-bg: #d4626c1f;
+  --bad-text: #f2a0a7;
+  --warn: #e0a84a;
+  --warn-bg: #e0a84a26;
+  --warn-text: #f5cf8d;
+  --line: #ffffff14; /* subtle borders */
+  --line-strong: #ffffff2e;
+  --tint: #ffffff14; /* chips, empty timer */
+  --shade: #0000002e; /* bottom edge of answer tiles, flag outline */
+  --shade-strong: #05070fcc; /* behind a confirmation sheet */
+
+  /* answer colours: each option has a colour AND a symbol, in this order */
+  --c-heart: #ba5367; /* rose (white text 4.65:1) */
+  --c-flower: #498063; /* sage (white text 4.61:1) */
+  --c-star: #4a74a8; /* dusty blue */
+  --c-moon: #c49a3c; /* antique gold (dark text) */
+  --c-moon-text: #251a04;
+  --c-answer-text: #ffffff;
+  --c-star-icon: #517aab; /* the star as a small icon on a dark background (3:1) */
+
+  /* the "EN" language badge (English has no single flag) */
+  --badge-en: #25407a;
+  --badge-en-text: #ffffff;
+
+  /* spacing scale (8 px grid) and radii */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-flag: 4px; /* small flags on the big screen */
+  --r-confetti: 3px;
+
+  --f-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --f-body: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+}

@@ -1,0 +1,6 @@
+# Store text files with LF line endings so they work on the Linux server.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary

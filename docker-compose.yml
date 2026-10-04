@@ -1,0 +1,24 @@
+# On the server: /srv/idoknow (the deploy hook checks the code out there).
+# /srv/idoknow/.env (never in git) holds ADMIN_PASSWORD, SESSION_SECRET and, for the public demo,
+# DEMO_MODE=true.
+services:
+  idoknow:
+    build: .
+    container_name: idoknow
+    # also the demo's nightly reset: it ends itself at 04:00 and is started fresh
+    restart: unless-stopped
+    env_file: .env
+    # the real event (never in git): content/ (questions, guests, event, photos), data/, the mode
+    # flag. The demo never reads it; the event password switches to it (see demo.ts).
+    volumes:
+      - ./event:/app/event
+    environment:
+      # no port is published: only Nginx Proxy Manager (on the proxy network) can reach it, so its
+      # X-Forwarded-For can be trusted (the guests' real addresses for the per-IP limits)
+      TRUST_PROXY: 'true'
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

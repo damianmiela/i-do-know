@@ -1,0 +1,39 @@
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+*.log
+
+# Secrets: only .env.example is tracked
+.env
+.env.*
+!.env.example
+
+# Runtime data (game state snapshots) and generated wristband codes: they work as join links
+data/
+# The real event (content, games, the mode flag): never in git
+event/
+
+# Real content is personal data: only the *.example.json files are tracked
+content/*
+!content/*.example.json
+!content/photos/
+content/photos/*
+!content/photos/.gitkeep
+# the fake example photo used by questions.example.json (exact name: no real photo can slip in)
+!content/photos/example-baby.webp
+
+# Private project docs (plan / hand-off)
+_docs/
+CLAUDE.md
+
+# Test output (Playwright, later)
+playwright-report/
+test-results/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

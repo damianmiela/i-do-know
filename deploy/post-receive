@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# post-receive: deploys on `git push deploy main` (the same command and pattern as the other projects
+# on this server). Installed at /opt/idoknow-deploy.git/hooks/post-receive.
+# The code goes to /srv/idoknow; /srv/idoknow/.env (never in git) stays as it is.
+#
+set -e
+
+APP_NAME="idoknow"
+REPO_DIR="/opt/${APP_NAME}-deploy.git"
+APP_DIR="/srv/${APP_NAME}"
+LOG_FILE="${APP_DIR}/deploy.log"
+export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1
+
+{
+    echo ""
+    echo "========================================"
+    echo " DEPLOY START: $(date '+%Y-%m-%d %H:%M:%S')"
+    echo "========================================"
+
+    while read oldrev newrev refname; do
+        LAST_REF="$refname"
+    done
+
+    if [ "$LAST_REF" = "refs/heads/main" ]; then
+        echo ">>> Checking out the code to ${APP_DIR}..."
+        git --work-tree="${APP_DIR}" --git-dir="${REPO_DIR}" checkout -f main
+        cd "${APP_DIR}"
+
+        if [ ! -f .env ]; then
+            echo ">>> STOP: ${APP_DIR}/.env is missing (ADMIN_PASSWORD, SESSION_SECRET, DEMO_MODE)."
+            exit 1
+        fi
+
+        echo ">>> Building and restarting the container..."
+        docker compose build
+        docker compose up -d --remove-orphans
+
+        echo ">>> Waiting for the health check..."
+        for i in $(seq 1 30); do
+            STATE=$(docker inspect -f '{{.State.Health.Status}}' "${APP_NAME}" 2>/dev/null || echo none)
+            [ "$STATE" = "healthy" ] && break
+            sleep 2
+        done
+        echo "    health: ${STATE}"
+
+        echo ">>> Cleaning up old Docker images..."
+        docker image prune -f 2>/dev/null || true
+        docker builder prune -af --filter until=72h 2>/dev/null || true
+
+        echo "========================================"
+        echo " DEPLOY COMPLETE: $(date '+%Y-%m-%d %H:%M:%S') (health: ${STATE})"
+        echo "========================================"
+        [ "$STATE" = "healthy" ] || exit 1
+    else
+        echo ">>> Branch $LAST_REF ignored: only main deploys."
+    fi
+
+} 2>&1 | tee -a "${LOG_FILE}"

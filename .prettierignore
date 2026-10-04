@@ -1,0 +1,5 @@
+dist
+coverage
+_docs
+content/photos
+package-lock.json
